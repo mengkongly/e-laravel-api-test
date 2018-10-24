@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Model\Review;
+use App\Model\Product;
+use App\Http\Resources\ReviewCollection;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -12,9 +14,11 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Product $product)
     {
-        //
+        // get review of product by // http://elarapi.test/api/products/16/reviews
+        return ReviewCollection::collection($product->reviews);
+        //return $product->reviews;
     }
 
     /**
